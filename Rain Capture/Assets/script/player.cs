@@ -1,46 +1,25 @@
+﻿
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
+    // سرعت حرکت پلیر
     public float moveSpeed = 5f;
 
-    private Rigidbody2D rb;
-    private float moveInput;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    // متغیر برای ذخیره کردن جهت حرکت
+    private Vector3 moveDirection;
 
-    // Update is called once per frame
+    // متد آپدیت که هر فریم اجرا می‌شود
     void Update()
     {
-        moveInput = Input.GetAxisRaw("Horizental");
-    }
+        // دریافت ورودی‌های افقی و عمودی (WASD یا Arrow Keys)
+        float horizontal = Input.GetAxis("Horizontal"); // A/D یا Left/Right Arrow
+        float vertical = Input.GetAxis("Vertical");     // W/S یا Up/Down Arrow
 
-    void FixedUpdate()
-    {
-        rb.Velocity = new Vector2(moveInput * moveSpeed, rb.Velocity.y);
-    }
-    private void fixedUpdate()
-    {
-        public void movement()
-        {
-            float xInput = xInput.GetAxis("Horizental") * moveSpeed;
+        // تعیین جهت حرکت
+        moveDirection = new Vector3(horizontal, 0, vertical);
 
-            float clampedPosition = Mathf.Clamp()
-
-
-
-
-
-
-
-
-
-
-
-
-        }
+        // حرکت دادن پلیر بر اساس ورودی‌ها
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
     }
 }
